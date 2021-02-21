@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/car_make_btn"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="@string/identify_car_str"
+        app:backgroundTint="#E57373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/hints_btn"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/hints_str"
+        app:backgroundTint="#64B5F6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_make_btn" />
+
+    <Button
+        android:id="@+id/car_image_btn"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/identify_car_image_str"
+        app:backgroundTint="#4DB6AC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hints_btn" />
+
+    <Button
+        android:id="@+id/advanced_level_btn"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/advanced_level_str"
+        app:backgroundTint="#F06292"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_image_btn" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
