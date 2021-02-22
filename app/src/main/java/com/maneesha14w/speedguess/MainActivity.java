@@ -11,8 +11,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    String btn_click_text = "BTNCLICK"   ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,26 +29,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         advanced_lvl_btn.setOnClickListener(this);
     }
 
+    //any click is passed through here
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.car_make_btn:
-                Log.d(btn_click_text, "identify car make");
+                Log.d("BTN_CLICK", "identify car make");
                 car_make_click();
                 break;
             case R.id.hints_btn:
-                Log.d(btn_click_text, "Hint btn");
+                Log.d("BTN_CLICK", "Hint btn");
                 break;
             case R.id.car_image_btn:
-                Log.d(btn_click_text, "Car image Btn");
+                Log.d("BTN_CLICK", "Car image Btn");
                 break;
             case R.id.advanced_level_btn:
-                Log.d(btn_click_text, "Advanced level btn");
+                Log.d("BTN_CLICK", "Advanced level btn");
                 break;
         }
     }
 
+    //starts the identify car make activity
     private void car_make_click() {
         Intent intent = new Intent(this, Identify_Car_Make_Activity.class);
         startActivity(intent);
