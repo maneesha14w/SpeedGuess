@@ -4,4 +4,6 @@
     <string name="hints_str">Hints</string>
     <string name="identify_car_image_str">Identify the Car Image</string>
     <string name="advanced_level_str">Advanced Level</string>
+    <string name="content_descrip_ImageView">Image of Car to be Guessed</string>
+    <string name="Identify_Btn_Text">Identify</string>
 </resources>
