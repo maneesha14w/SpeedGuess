@@ -3,7 +3,6 @@ package com.maneesha14w.speedguess;
 //TODO optimise randomising by using AsyncTask
 
 import android.os.Bundle;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -44,7 +43,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
     private void spinnerSetter() {
         Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
         String [] carMakeNames = getResources().getStringArray(R.array.car_names_array);
-        ArrayAdapter adapter  = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carMakeNames);
+        ArrayAdapter<String> adapter  = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carMakeNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carMakeSpinner.setAdapter(adapter);
     }

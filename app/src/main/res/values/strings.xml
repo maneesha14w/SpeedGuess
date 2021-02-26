@@ -7,6 +7,7 @@
     <string name="content_descrip_ImageView">Image of Car to be Guessed</string>
     <string name="Identify_Btn_Text">Identify</string>
     <string-array name="car_names_array">
+        <item>Please pick a make</item>
         <item>Mercedes</item>
         <item>Tesla</item>
         <item>Ford</item>
