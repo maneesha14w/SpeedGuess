@@ -1,6 +1,6 @@
 package com.maneesha14w.speedguess;
 
-//TODO optimise randomising by using AsyncTask
+//TODO implement better design (material?)
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,6 +29,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         ImageView imgView = findViewById(R.id.car_img_view);
         imgView.setImageResource(getRandomImageResource(imgView));
 
+        //sets spinner up
         spinnerSetter();
     }
 
@@ -46,19 +47,34 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
     }
 
     private void spinnerSetter() {
-        Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
+        Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner); //get id of spinner
 
-        String [] carMakeNames = getResources().getStringArray(R.array.car_names_array);
+        String [] carMakeNames = getResources().getStringArray(R.array.car_names_array); //array to hold names of models
 
+        // adapter draws spinner
         ArrayAdapter<String> adapter  = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carMakeNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        carMakeSpinner.setAdapter(adapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); //sets resource of a string array in strings.xml
+        carMakeSpinner.setAdapter(adapter); //setting the adapter to the spinner
     }
 
 
+    // function for when identify is clicked
     public void identifyBtnClick(View view) {
+        //get the item currently in spinner
         Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
         String selectedModel = carMakeSpinner.getSelectedItem().toString();
-        if (selectedModel == )
+
+        // get the correct answer
+        ImageView imgView = findViewById(R.id.car_img_view);
+        String correctModel = imgView.getTag().toString();
+
+        // if Select model has been selected.
+        if (selectedModel.equals("Select Model")){
+            Toast.makeText(this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
+        }
+        else if (selectedModel.toLowerCase().equals(correctModel.toLowerCase())) {
+            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+        }
+        else Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
     }
 }
