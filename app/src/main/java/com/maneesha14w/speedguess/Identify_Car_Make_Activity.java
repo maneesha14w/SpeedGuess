@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -60,6 +61,8 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
     // function for when identify is clicked
     public void identifyBtnClick(View view) {
+        Button identify_btn = findViewById(R.id.identify_btn);
+        
         //get the item currently in spinner
         Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
         String selectedModel = carMakeSpinner.getSelectedItem().toString();
@@ -73,8 +76,16 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
             Toast.makeText(this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
         }
         else if (selectedModel.toLowerCase().equals(correctModel.toLowerCase())) {
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
+            toast.getView().setBackgroundColor(Color.GREEN);
+            toast.show();
+            identify_btn.setText(R.string.next_btn_txt);
+            identify_btn.setBackgroundColor(Color.GREEN);
         }
-        else Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+        else {
+            Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
+            toast.getView().setBackgroundColor(Color.RED);
+            toast.show();
+        }
     }
 }

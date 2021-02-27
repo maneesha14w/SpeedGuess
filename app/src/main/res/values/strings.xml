@@ -7,6 +7,7 @@
     <string name="content_descrip_ImageView">Image of Car to be Guessed</string>
     <string name="Identify_Btn_Text">Identify</string>
     <string name="select_model_text">Select Model:</string>
+    <string name="next_btn_txt">Next</string>
     <string-array name="car_names_array">
         <item>Select Model</item>
         <item>Mercedes</item>
