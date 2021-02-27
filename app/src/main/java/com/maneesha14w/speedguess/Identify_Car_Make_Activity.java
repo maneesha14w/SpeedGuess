@@ -31,6 +31,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         ImageView imgView = findViewById(R.id.car_img_view);
         imgView.setImageResource(getRandomImageResource(imgView));
 
+        //setting tag for btn
         Button identify_btn = findViewById(R.id.identify_btn);
         identify_btn.setTag("");
 
@@ -67,14 +68,15 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
     public void identifyBtnClick(View view) {
         Button identify_btn = findViewById(R.id.identify_btn);
 
+        // check btn tag if user has guessed correct answer
         if (identify_btn.getTag().equals("next")){
             Intent intent = new Intent(Identify_Car_Make_Activity.this, Identify_Car_Make_Activity.class);
             finish();
-            overridePendingTransition(0, 0);
+            overridePendingTransition(1, 0);
             startActivity(intent);
             overridePendingTransition(0, 0);
         }
-        else {
+        else { //first time activity is being run
 
             //get the item currently in spinner
             Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
@@ -88,9 +90,11 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
             if (selectedModel.equals("Select Model")) {
                 Toast.makeText(this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
             } else if (selectedModel.toLowerCase().equals(correctModel.toLowerCase())) {
+                //if the correct option has been chosen
                 Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
                 toast.getView().setBackgroundColor(Color.GREEN);
                 toast.show();
+                //btn changes
                 identify_btn.setText(R.string.next_btn_txt);
                 identify_btn.setBackgroundColor(Color.GREEN);
                 identify_btn.setTag("next");
@@ -98,6 +102,10 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
                 toast.getView().setBackgroundColor(Color.RED);
                 toast.show();
+
+                TextView correct_text = findViewById(R.id.correct_txt_view);
+                String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
+                correct_text.setText(displayText);
             }
         }
     }
