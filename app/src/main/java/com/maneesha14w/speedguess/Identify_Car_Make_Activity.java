@@ -1,7 +1,8 @@
 package com.maneesha14w.speedguess;
 
-//TODO implement better design (material?)
+//TODO cleanup toasts, implement better design (material?)
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,9 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         // getting and setting the image view to a random img
         ImageView imgView = findViewById(R.id.car_img_view);
         imgView.setImageResource(getRandomImageResource(imgView));
+
+        Button identify_btn = findViewById(R.id.identify_btn);
+        identify_btn.setTag("");
 
         //sets spinner up
         spinnerSetter();
@@ -62,30 +66,39 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
     // function for when identify is clicked
     public void identifyBtnClick(View view) {
         Button identify_btn = findViewById(R.id.identify_btn);
-        
-        //get the item currently in spinner
-        Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
-        String selectedModel = carMakeSpinner.getSelectedItem().toString();
 
-        // get the correct answer
-        ImageView imgView = findViewById(R.id.car_img_view);
-        String correctModel = imgView.getTag().toString();
-
-        // if Select model has been selected.
-        if (selectedModel.equals("Select Model")){
-            Toast.makeText(this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
-        }
-        else if (selectedModel.toLowerCase().equals(correctModel.toLowerCase())) {
-            Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
-            toast.getView().setBackgroundColor(Color.GREEN);
-            toast.show();
-            identify_btn.setText(R.string.next_btn_txt);
-            identify_btn.setBackgroundColor(Color.GREEN);
+        if (identify_btn.getTag().equals("next")){
+            Intent intent = new Intent(Identify_Car_Make_Activity.this, Identify_Car_Make_Activity.class);
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
         }
         else {
-            Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
-            toast.getView().setBackgroundColor(Color.RED);
-            toast.show();
+
+            //get the item currently in spinner
+            Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
+            String selectedModel = carMakeSpinner.getSelectedItem().toString();
+
+            // get the correct answer
+            ImageView imgView = findViewById(R.id.car_img_view);
+            String correctModel = imgView.getTag().toString();
+
+            // if Select model has been selected.
+            if (selectedModel.equals("Select Model")) {
+                Toast.makeText(this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
+            } else if (selectedModel.toLowerCase().equals(correctModel.toLowerCase())) {
+                Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
+                toast.getView().setBackgroundColor(Color.GREEN);
+                toast.show();
+                identify_btn.setText(R.string.next_btn_txt);
+                identify_btn.setBackgroundColor(Color.GREEN);
+                identify_btn.setTag("next");
+            } else {
+                Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
+                toast.getView().setBackgroundColor(Color.RED);
+                toast.show();
+            }
         }
     }
 }
