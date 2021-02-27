@@ -59,5 +59,6 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
     public void identifyBtnClick(View view) {
         Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
         String selectedModel = carMakeSpinner.getSelectedItem().toString();
+        if (selectedModel == )
     }
 }

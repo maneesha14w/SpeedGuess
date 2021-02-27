@@ -6,35 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/black"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/custom_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lora_title"
-            android:text="@string/app_name"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-
     <Button
         android:id="@+id/car_make_btn"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
         android:text="@string/identify_car_str"
-        app:backgroundTint="#B39DDB"
+        android:textColor="@color/white"
+        app:backgroundTint="#6200EA"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="@string/hints_str"
-        app:backgroundTint="#90CAF9"
+        android:textColor="@color/white"
+        app:backgroundTint="#00C853"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/car_make_btn" />
@@ -55,7 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="@string/identify_car_image_str"
-        app:backgroundTint="#A5D6A7"
+        android:textColor="@color/white"
+        app:backgroundTint="#0091EA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hints_btn" />
@@ -66,7 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="@string/advanced_level_str"
-        app:backgroundTint="#FFCC80"
+        android:textColor="@color/white"
+        app:backgroundTint="#DD2C00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/car_image_btn" />
