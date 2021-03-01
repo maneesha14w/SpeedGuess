@@ -3,8 +3,13 @@ package com.maneesha14w.speedguess;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class Hints_Activity extends AppCompatActivity {
 
@@ -39,4 +44,25 @@ public class Hints_Activity extends AppCompatActivity {
         dashTextView.setText(finalDash);
     }
 
+    public void addCharClick(View view) {
+        EditText editText = findViewById(R.id.charTextBox);
+        ImageView imgView = findViewById(R.id.car_img_view);
+        TextView textView = findViewById(R.id.dashTextView);
+
+        ArrayList<String> list = new ArrayList<>();
+
+        String newStr = imgView.getTag().toString();
+        String enteredChar = editText.getText().toString();
+
+        list.add(enteredChar);
+
+        for (String e : list){
+            newStr = newStr.replaceAll("[^" + e + "]", " _ ");
+        }
+
+        Log.d("LOG", newStr);
+        editText.getText().clear();
+        textView.setText(newStr);
+
+    }
 }
