@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/car_img_view"
-        android:textColor="#e8d720"
+        android:textColor="#d8cb0d"
         android:fontFamily="@font/opensans_semi"
         android:textSize="22sp"
 

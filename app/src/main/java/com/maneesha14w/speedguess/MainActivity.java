@@ -35,24 +35,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.car_make_btn:
-                Log.d("BTN_CLICK", "identify car make");
-                car_make_click();
+                carMakeClicked();
                 break;
             case R.id.hints_btn:
-                Log.d("BTN_CLICK", "Hint btn");
+                hintBtnClicked();
                 break;
             case R.id.car_image_btn:
-                Log.d("BTN_CLICK", "Car image Btn");
+                carImageBtnClicked();
                 break;
             case R.id.advanced_level_btn:
-                Log.d("BTN_CLICK", "Advanced level btn");
+                advancedBtnClicked();
                 break;
         }
     }
 
     //starts the identify car make activity
-    private void car_make_click() {
+    private void carMakeClicked() {
         Intent intent = new Intent(this, Identify_Car_Make_Activity.class);
         startActivity(intent);
     }
+
+    private void hintBtnClicked() {
+        Intent intent = new Intent(this, Hints_Activity.class);
+        startActivity(intent);
+    }
+
+    private void carImageBtnClicked() {
+        Log.d("BTN_CLICK", "Car Image Btn Clicked");
+    }
+
+    private  void advancedBtnClicked() {
+        Log.d("BTN_CLICK", "Advanced level btn clicked");
+    }
+
 }

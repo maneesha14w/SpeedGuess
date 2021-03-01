@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,7 +28,8 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
         // getting and setting the image view to a random img
         ImageView imgView = findViewById(R.id.car_img_view);
-        imgView.setImageResource(getRandomImageResource(imgView));
+        String randomFileName = randomFileName(imgView);
+        imgView.setImageResource(getResources().getIdentifier(randomFileName, "drawable", getPackageName()));
 
         //setting tag for btn
         Button identify_btn = findViewById(R.id.identify_btn);
@@ -40,16 +40,13 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
     }
 
 
-    //method that returns int id of a random image and sets the tag of the ImageView to whatever make of car is selected
-    private int getRandomImageResource(ImageView imgView) {
+    protected String randomFileName(ImageView imgView) {
         Random rand = new Random();
         String carName = carNames[rand.nextInt(3)]; // random index from car names array
         String fileNum = String.valueOf(rand.nextInt(10) + 1); //Random car number
 
         imgView.setTag(carName); //setting the tag of the ImageView to whatever make of car is selected
-
-        String fileName = carName + "_" + fileNum; //string that corresponds to a random image file
-        return getResources().getIdentifier(fileName, "drawable", getPackageName()); // returns an int id of the filename
+        return  carName + "_" + fileNum; //string that corresponds to a random image file
     }
 
     private void spinnerSetter() {
@@ -92,12 +89,13 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
             } else if (selectedModel.toLowerCase().equals(correctModel.toLowerCase())) {
                 //if the correct option has been chosen
                 Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
-                toast.getView().setBackgroundColor(Color.GREEN);
+                toast.getView().setBackgroundColor(Color.parseColor("#0dba1b"));
                 toast.show();
                 //btn changes
                 identify_btn.setText(R.string.next_btn_txt);
-                identify_btn.setBackgroundColor(Color.GREEN);
+                identify_btn.setBackgroundColor(Color.parseColor("#0dba1b"));
                 identify_btn.setTag("next");
+                carMakeSpinner.setEnabled(false);
             } else {
                 Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
                 toast.getView().setBackgroundColor(Color.RED);
@@ -106,6 +104,13 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 TextView correct_text = findViewById(R.id.correct_txt_view);
                 String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
                 correct_text.setText(displayText);
+                correct_text.postDelayed(new Runnable(){
+                    @Override
+                    public void run()
+                    {
+                        correct_text.setVisibility(View.GONE);
+                    }
+                }, 3500);
             }
         }
     }
