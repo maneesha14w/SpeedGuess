@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Hints_Activity extends AppCompatActivity {
 
     private static ArrayList<String> list = new ArrayList<>();
+    private short tries = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +59,23 @@ public class Hints_Activity extends AppCompatActivity {
         String newStr = imgView.getTag().toString();
         String enteredChar = editText.getText().toString();
 
+        int i = correctModel.indexOf(enteredChar);
+        if (i != -1) {
+            list.add(enteredChar);
+            String concatStr = "";
 
-        list.add(enteredChar);
-        String concatStr = "";
+            for (String e : list) {
+                concatStr = concatStr + e;
+            }
 
-        for (String e : list){
-            concatStr = concatStr + e;
+            newStr = newStr.replaceAll("[^" + concatStr + " ]", " _ ");
+            if (newStr.equals(correctModel)) {
+                Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            }
+            textView.setText(newStr);
         }
-
-        newStr = newStr.replaceAll("[^" + concatStr + " ]", " _ ");
-        if (newStr.equals(correctModel)) {
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
-            editText.setEnabled(false);
-            submitBtn.setText(R.string.next_btn_txt);
+        else {
+            Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
         }
-        editText.getText().clear();
-        textView.setText(newStr);
     }
 }
