@@ -1,10 +1,7 @@
 package com.maneesha14w.speedguess;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,12 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
 public class Hints_Activity extends AppCompatActivity {
 
     private static ArrayList<String> list = new ArrayList<>();
-    private short tries = 0;
+    private short tries = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +72,10 @@ public class Hints_Activity extends AppCompatActivity {
             int i = correctModel.indexOf(enteredChar);
             if (i != -1) {
                 list.add(enteredChar);
-                String concatStr = "";
+                StringBuilder concatStr = new StringBuilder();
 
                 for (String e : list) {
-                    concatStr = concatStr + e;
+                    concatStr.append(e);
                 }
 
                 newStr = newStr.replaceAll("[^" + concatStr + " ]", " _ ");
@@ -92,7 +91,16 @@ public class Hints_Activity extends AppCompatActivity {
 
                 textView.setText(newStr);
             } else {
-                Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+                tries--;
+                if (tries > 0) {
+                    Toast.makeText(this, "Incorrect, " +  tries + " tries left", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(this, "3 tries over", Toast.LENGTH_SHORT).show();
+                    submitBtn.setText(R.string.next_btn_txt);
+                    submitBtn.setTag("next");
+                    editText.setEnabled(false);
+                }
             }
             editText.getText().clear();
         }
