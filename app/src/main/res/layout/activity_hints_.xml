@@ -22,10 +22,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_img_view" />
+        app:layout_constraintTop_toBottomOf="@+id/car_img_view"
+        android:fontFamily="@font/rubik_bold"
+        android:textSize="18sp"
+        />
 
     <EditText
         android:id="@+id/charTextBox"
@@ -58,7 +60,7 @@
         android:background="@color/blue"
         android:fontFamily="@font/karla_regular"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="22sp"
         style="@style/Theme.MaterialComponents"
         app:backgroundTint="@color/blue"
         />

@@ -100,6 +100,10 @@ public class Hints_Activity extends AppCompatActivity {
                     submitBtn.setText(R.string.next_btn_txt);
                     submitBtn.setTag("next");
                     editText.setEnabled(false);
+                    String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
+                    textView.setTextColor(getResources().getColor(R.color.yellow));
+                    textView.setBackgroundColor(getResources().getColor(R.color.blue));
+                    textView.setText(displayText);
                 }
             }
             editText.getText().clear();
