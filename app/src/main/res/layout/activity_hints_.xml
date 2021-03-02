@@ -55,6 +55,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/charTextBox"
         android:onClick="addCharClick"
+        android:background="@color/blue"
+        android:fontFamily="@font/karla_regular"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        style="@style/Theme.MaterialComponents"
+        app:backgroundTint="@color/blue"
         />
 
 

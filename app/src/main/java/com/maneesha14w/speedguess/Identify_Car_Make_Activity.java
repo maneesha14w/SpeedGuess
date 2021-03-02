@@ -89,16 +89,16 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
             } else if (selectedModel.toLowerCase().equals(correctModel)) {
                 //if the correct option has been chosen
                 Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
-                toast.getView().setBackgroundColor(Color.parseColor("#0dba1b"));
+                toast.getView().setBackgroundColor(getResources().getColor(R.color.green));
                 toast.show();
                 //btn changes
                 identify_btn.setText(R.string.next_btn_txt);
-                identify_btn.setBackgroundColor(Color.parseColor("#0dba1b"));
+                identify_btn.setBackgroundColor(getResources().getColor(R.color.green));
                 identify_btn.setTag("next");
                 carMakeSpinner.setEnabled(false);
             } else {
                 Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
-                toast.getView().setBackgroundColor(Color.RED);
+                toast.getView().setBackgroundColor(getResources().getColor(R.color.light_red));
                 toast.show();
 
                 TextView correct_text = findViewById(R.id.correct_txt_view);
