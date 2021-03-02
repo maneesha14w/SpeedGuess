@@ -11,6 +11,7 @@
     <string name="guess_letters_text">Guess Letter</string>
     <string name="submit_txt">Submit</string>
     <string name="accepted_chars">abcdefghijklmnopqrstuvwxyz</string>
+    <string name="illustration_text">illustration</string>
     <string-array name="car_names_array">
         <item>Select Model</item>
         <item>Mercedes</item>

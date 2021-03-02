@@ -11,7 +11,7 @@
         style="@style/Theme.MaterialComponents"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="320dp"
         android:background="@color/blue"
         android:fontFamily="@font/karla_regular"
         android:text="@string/identify_car_str"
@@ -69,5 +69,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/car_image_btn" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="325dp"
+        android:layout_height="332dp"
+        android:contentDescription="@string/illustration_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_drawkit_transport" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
