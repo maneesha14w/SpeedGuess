@@ -5,13 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Hints_Activity extends AppCompatActivity {
+
+    private static ArrayList<String> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,21 +52,27 @@ public class Hints_Activity extends AppCompatActivity {
         EditText editText = findViewById(R.id.charTextBox);
         ImageView imgView = findViewById(R.id.car_img_view);
         TextView textView = findViewById(R.id.dashTextView);
+        Button submitBtn = findViewById(R.id.identify_btn);
 
-        ArrayList<String> list = new ArrayList<>();
-
+        String correctModel = imgView.getTag().toString();
         String newStr = imgView.getTag().toString();
         String enteredChar = editText.getText().toString();
 
+
         list.add(enteredChar);
+        String concatStr = "";
 
         for (String e : list){
-            newStr = newStr.replaceAll("[^" + e + "]", " _ ");
+            concatStr = concatStr + e;
         }
 
-        Log.d("LOG", newStr);
+        newStr = newStr.replaceAll("[^" + concatStr + " ]", " _ ");
+        if (newStr.equals(correctModel)) {
+            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            editText.setEnabled(false);
+            submitBtn.setText(R.string.next_btn_txt);
+        }
         editText.getText().clear();
         textView.setText(newStr);
-
     }
 }
