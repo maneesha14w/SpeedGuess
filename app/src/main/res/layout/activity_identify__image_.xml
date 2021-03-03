@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Identify_Image_Activity">
 
+    <HorizontalScrollView
+        android:layout_width="413dp"
+        android:layout_height="601dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

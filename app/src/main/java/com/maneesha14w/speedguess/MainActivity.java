@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void carImageBtnClicked() {
-        Log.d("BTN_CLICK", "Car Image Btn Clicked");
+        Intent intent = new Intent(this, Identify_Image_Activity.class);
+        startActivity(intent);
     }
 
     private  void advancedBtnClicked() {
