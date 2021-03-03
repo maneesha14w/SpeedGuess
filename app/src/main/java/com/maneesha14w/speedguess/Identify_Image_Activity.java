@@ -1,17 +1,20 @@
 package com.maneesha14w.speedguess;
 
-import android.animation.ObjectAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
 public class Identify_Image_Activity extends AppCompatActivity {
+    private String chosenName = "";
+    private View lastView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +44,28 @@ public class Identify_Image_Activity extends AppCompatActivity {
         String [] carFileNames = {fileName_1, fileName_2, fileName_3};
         Random random = new Random();
         String chosenFileName = carFileNames[random.nextInt(3)];
-        String chosenName = (chosenFileName.substring(chosenFileName.indexOf("_", chosenFileName.indexOf("_") + 1) + 1, chosenFileName.lastIndexOf("_"))).toUpperCase();
+        chosenName = (chosenFileName.substring(chosenFileName.indexOf("_", chosenFileName.indexOf("_") + 1) + 1, chosenFileName.lastIndexOf("_")));
 
-        textView.setText(chosenName);
+        textView.setText(chosenName.toUpperCase());
     }
 
 
     public void imageBtnClick(View view) {
-        TextView textView = findViewById(R.id.textView);
-        switch (view.getId()) {
-            case R.id.img_1:
-                textView.setText("1");
-                break;
-            case R.id.img_2:
-                textView.setText("2");
-                break;
-            case R.id.img_3:
-                textView.setText("3");
-                break;
-
+        if (lastView!=null) {
+            lastView.setBackgroundColor(Color.GRAY);
         }
+
+        view.setBackgroundColor(getResources().getColor(R.color.green));
+        lastView = view;
+
+        
+        if (view.getTag() == chosenName){
+            Toast.makeText(this, view.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, view.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
+        }
+
     }
+
 }
