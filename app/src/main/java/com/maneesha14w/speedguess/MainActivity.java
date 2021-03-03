@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.car_make_btn:
                 carMakeClicked();
                 break;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    private  void advancedBtnClicked() {
+    private void advancedBtnClicked() {
         Log.d("BTN_CLICK", "Advanced level btn clicked");
     }
 

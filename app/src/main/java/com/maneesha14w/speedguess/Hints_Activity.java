@@ -31,7 +31,7 @@ public class Hints_Activity extends AppCompatActivity {
         setDashes(imgView); // method that sets the dashes which show the num of letters the user has to guess.
     }
 
-    private void setImage(ImageView imgView) {
+    protected void setImage(ImageView imgView) {
         // use of identify_car_make_activity object to use randomFileName method
         Identify_Car_Make_Activity identifyObj = new Identify_Car_Make_Activity();
         String fileName = identifyObj.randomFileName(imgView);

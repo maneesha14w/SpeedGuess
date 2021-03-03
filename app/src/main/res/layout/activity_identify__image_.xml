@@ -7,17 +7,58 @@
     tools:context=".Identify_Image_Activity">
 
     <HorizontalScrollView
-        android:layout_width="413dp"
-        android:layout_height="601dp"
-        android:scrollbars="none"
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/gallery"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_1"
+                android:layout_width="420dp"
+                android:layout_height="match_parent"
+                android:background="#c1c1c1"
+                android:onClick="imageBtnClick"
+                android:contentDescription="@string/image_1" />
+
+            <ImageView
+                android:id="@+id/img_2"
+                android:layout_width="420dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="#c1c1c1"
+                android:onClick="imageBtnClick"
+                android:contentDescription="@string/image_2"
+                />
+
+            <ImageView
+                android:id="@+id/img_3"
+                android:layout_width="420dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="#c1c1c1"
+                android:onClick="imageBtnClick"
+                android:contentDescription="@string/image_3"
+                 />
+        </LinearLayout>
     </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        android:fontFamily="@font/rubik_bold"
+        android:textSize="20sp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

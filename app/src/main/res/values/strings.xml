@@ -12,6 +12,9 @@
     <string name="submit_txt">Submit</string>
     <string name="accepted_chars">abcdefghijklmnopqrstuvwxyz</string>
     <string name="illustration_text">illustration</string>
+    <string name="image_1">image 1</string>
+    <string name="image_2">image 2</string>
+    <string name="image_3">image 3</string>
     <string-array name="car_names_array">
         <item>Select Model</item>
         <item>Mercedes</item>
