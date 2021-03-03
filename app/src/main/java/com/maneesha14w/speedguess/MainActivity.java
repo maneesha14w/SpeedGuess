@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+    //starts hint activity
     private void hintBtnClicked() {
         Intent intent = new Intent(this, Hints_Activity.class);
         startActivity(intent);

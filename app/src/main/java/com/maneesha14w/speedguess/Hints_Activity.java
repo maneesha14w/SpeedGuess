@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Hints_Activity extends AppCompatActivity {
 
-    private static ArrayList<String> list = new ArrayList<>();
+    private static final ArrayList<String> list = new ArrayList<>();
     private short tries = 3;
 
     @Override
@@ -25,12 +25,14 @@ public class Hints_Activity extends AppCompatActivity {
 
         ImageView imgView = findViewById(R.id.car_img_view);
         Button submitBtn = findViewById(R.id.submitBtnHint);
+        //setting tag so it isn't null
         submitBtn.setTag("");
-        setImage(imgView);
-        setDashes(imgView);
+        setImage(imgView); //method that sets an ImageView
+        setDashes(imgView); // method that sets the dashes which show the num of letters the user has to guess.
     }
 
     private void setImage(ImageView imgView) {
+        // use of identify_car_make_activity object to use randomFileName method
         Identify_Car_Make_Activity identifyObj = new Identify_Car_Make_Activity();
         String fileName = identifyObj.randomFileName(imgView);
         imgView.setImageResource( getResources().getIdentifier(fileName, "drawable", getPackageName()));
@@ -39,8 +41,9 @@ public class Hints_Activity extends AppCompatActivity {
 
     private void setDashes(ImageView imgView) {
         TextView dashTextView = findViewById(R.id.dashTextView);
-        String correctModel = imgView.getTag().toString();
+        String correctModel = imgView.getTag().toString(); // the tag has the correct model stored.
 
+        // used a loop to concat underscores
         String finalDash="";
         for (int i = 0; i < correctModel.length(); i++) {
             if (correctModel.charAt(i) != ' '){
@@ -53,7 +56,9 @@ public class Hints_Activity extends AppCompatActivity {
 
     public void addCharClick(View view) {
         Button submitBtn = findViewById(R.id.submitBtnHint);
+        // if user has completed the whole word
         if (submitBtn.getTag().equals("next")) {
+            //restart activity
             Intent intent = new Intent(Hints_Activity.this, Hints_Activity.class);
             finish();
             overridePendingTransition(1, 0);
@@ -66,31 +71,34 @@ public class Hints_Activity extends AppCompatActivity {
 
 
             String correctModel = imgView.getTag().toString();
-            String newStr = imgView.getTag().toString();
+            String newStr = imgView.getTag().toString(); //copy of correct model
             String enteredChar = editText.getText().toString();
 
+            //checks if the character entered exists in the correct model
             int i = correctModel.indexOf(enteredChar);
-            if (i != -1) {
-                list.add(enteredChar);
-                StringBuilder concatStr = new StringBuilder();
+            if (i != -1) { //char exists in String
+                list.add(enteredChar); //adds char to list
+                StringBuilder concatStr = new StringBuilder(); //string builder that combines all elements of the list
 
-                for (String e : list) {
+                for (String e : list) { //loop through list and append
                     concatStr.append(e);
                 }
 
-                newStr = newStr.replaceAll("[^" + concatStr + " ]", " _ ");
-                if (newStr.equals(correctModel)) {
+                newStr = newStr.replaceAll("[^" + concatStr + " ]", " _ "); // the string mirrored in the dash TextView
+
+                if (newStr.equals(correctModel)) { //if user has completed the guess
                     Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
                     toast.getView().setBackgroundColor(getResources().getColor(R.color.green));
                     toast.show();
 
                     submitBtn.setText(R.string.next_btn_txt);
-                    submitBtn.setTag("next");
+                    submitBtn.setTag("next"); //setting tag to next
                     editText.setEnabled(false);
+                    list.clear(); //clear list for next car
                 }
 
-                textView.setText(newStr);
-            } else {
+                textView.setText(newStr); //sets text view to the new dashed str
+            } else { //char not found in correctModel
                 tries--;
                 if (tries > 0) {
                     Toast.makeText(this, "Incorrect, " +  tries + " tries left", Toast.LENGTH_SHORT).show();
@@ -98,15 +106,16 @@ public class Hints_Activity extends AppCompatActivity {
                 else {
                     Toast.makeText(this, "3 tries over", Toast.LENGTH_SHORT).show();
                     submitBtn.setText(R.string.next_btn_txt);
-                    submitBtn.setTag("next");
-                    editText.setEnabled(false);
+                    submitBtn.setTag("next"); // tries over so need to set tag as next
+                    editText.setEnabled(false); //disable editText
                     String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
                     textView.setTextColor(getResources().getColor(R.color.yellow));
                     textView.setBackgroundColor(getResources().getColor(R.color.blue));
                     textView.setText(displayText);
+                    list.clear(); // clear list for next car
                 }
             }
-            editText.getText().clear();
+            editText.getText().clear(); //clear editText to remove last submitted text
         }
     }
 }

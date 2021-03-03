@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 public class Identify_Car_Make_Activity extends AppCompatActivity {
-    //array that stores the name of cars that correspond to the first part of the image file
+    //array that stores the name of cars that correspond to the first part of the image file can later be appended for more brands
     private final String[] carNames = {"ford", "mercedes", "tesla"};
 
     @Override
@@ -28,18 +28,18 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
         // getting and setting the image view to a random img
         ImageView imgView = findViewById(R.id.car_img_view);
-        String randomFileName = randomFileName(imgView);
+        String randomFileName = randomFileName(imgView); //random file name
         imgView.setImageResource(getResources().getIdentifier(randomFileName, "drawable", getPackageName()));
 
-        //setting tag for btn
+        //setting tag for btn to check if next btn has been activated
         Button identify_btn = findViewById(R.id.identify_btn);
         identify_btn.setTag("");
 
-        //sets spinner up
+        //init spinner
         spinnerSetter();
     }
 
-
+    // method that returns string of a random file name
     protected String randomFileName(ImageView imgView) {
         Random rand = new Random();
         String carName = carNames[rand.nextInt(3)]; // random index from car names array
@@ -49,6 +49,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         return  carName + "_" + fileNum; //string that corresponds to a random image file
     }
 
+    //initialises spinner
     private void spinnerSetter() {
         Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner); //get id of spinner
 
@@ -59,7 +60,6 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); //sets resource of a string array in strings.xml
         carMakeSpinner.setAdapter(adapter); //setting the adapter to the spinner
     }
-
 
     // function for when identify is clicked
     public void identifyBtnClick(View view) {
@@ -97,13 +97,16 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 identify_btn.setTag("next");
                 carMakeSpinner.setEnabled(false);
             } else {
+                // incorrect options has been chosen
                 Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
                 toast.getView().setBackgroundColor(getResources().getColor(R.color.light_red));
                 toast.show();
 
+                // displaying the correct model
                 TextView correct_text = findViewById(R.id.correct_txt_view);
                 String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
                 correct_text.setText(displayText);
+                // added a delay and removed the textView.
                 correct_text.postDelayed(new Runnable(){
                     @Override
                     public void run()
