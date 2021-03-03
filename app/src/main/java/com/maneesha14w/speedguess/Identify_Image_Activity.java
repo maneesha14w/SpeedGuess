@@ -57,15 +57,17 @@ public class Identify_Image_Activity extends AppCompatActivity {
 
         view.setBackgroundColor(getResources().getColor(R.color.green));
         lastView = view;
-
-        
-        if (view.getTag() == chosenName){
-            Toast.makeText(this, view.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this, view.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
-        }
-
     }
 
+    public void submitBtnClick(View view) {
+        if (lastView == null) {
+            Toast.makeText(this, "Please pick an image and submit!", Toast.LENGTH_SHORT).show();
+        }
+        else if (lastView.getTag() == chosenName){
+            Toast.makeText(this, lastView.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, lastView.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
+        }
+    }
 }
