@@ -89,7 +89,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 Toast.makeText(this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
             } else if (selectedModel.toLowerCase().equals(correctModel)) {
                 //if the correct option has been chosen
-                Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, "CORRECT!", Toast.LENGTH_SHORT);
                 toast.getView().setBackgroundColor(getResources().getColor(R.color.green));
                 toast.show();
                 //btn changes

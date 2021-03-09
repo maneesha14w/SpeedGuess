@@ -1,8 +1,10 @@
 package com.maneesha14w.speedguess;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,10 +21,13 @@ public class Identify_Image_Activity extends AppCompatActivity {
     private String fileName_1, fileName_2, fileName_3;
     private Identify_Car_Make_Activity identifyObj = new Identify_Car_Make_Activity();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_identify__image_);
+
+        Button submitBtn = findViewById(R.id.submitBtn);
 
         img_1 = findViewById(R.id.img_1);
         img_2 = findViewById(R.id.img_2);
@@ -30,6 +35,7 @@ public class Identify_Image_Activity extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView);
         HorizontalScrollView horizontalScrollView = findViewById(R.id.horizontalScrollView);
 
+        submitBtn.setTag("");
         setup(textView);
 
     }
@@ -42,7 +48,6 @@ public class Identify_Image_Activity extends AppCompatActivity {
         
         randomnessCheck();
 
-        
         img_1.setImageResource( getResources().getIdentifier(fileName_1, "drawable", getPackageName()));
         img_2.setImageResource( getResources().getIdentifier(fileName_2, "drawable", getPackageName()));
         img_3.setImageResource( getResources().getIdentifier(fileName_3, "drawable", getPackageName()));
@@ -75,14 +80,28 @@ public class Identify_Image_Activity extends AppCompatActivity {
     }
 
     public void submitBtnClick(View view) {
-        if (lastView == null) {
-            Toast.makeText(this, "Please pick an image and submit!", Toast.LENGTH_SHORT).show();
+        Button submitBtn = findViewById(R.id.submitBtn);
+        if (submitBtn.getTag().equals("next")) {
+            Intent intent = new Intent(Identify_Image_Activity.this, Identify_Image_Activity.class);
+            finish();
+            overridePendingTransition(1, 0);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
         }
-        else if (lastView.getTag() == chosenName){
-            Toast.makeText(this, lastView.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this, lastView.getTag().toString() + " " + chosenName, Toast.LENGTH_SHORT).show();
+        else {
+            if (lastView == null) {
+                Toast.makeText(this, "Please pick an image and submit!", Toast.LENGTH_SHORT).show();
+            } else if (lastView.getTag().equals(chosenName)) {
+                Toast toast = Toast.makeText(this, "CORRECT!", Toast.LENGTH_SHORT);
+                toast.getView().setBackgroundColor(getResources().getColor(R.color.green));
+                toast.show();
+            } else {
+                Toast toast = Toast.makeText(this, "WRONG!", Toast.LENGTH_SHORT);
+                toast.getView().setBackgroundColor(getResources().getColor(R.color.red));
+                toast.show();
+            }
+            submitBtn.setTag("next");
+            submitBtn.setText("Next");
         }
     }
 }
