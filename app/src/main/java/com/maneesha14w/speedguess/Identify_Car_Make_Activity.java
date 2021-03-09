@@ -3,7 +3,6 @@ package com.maneesha14w.speedguess;
 //TODO cleanup toasts, implement better design (material?)
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,12 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Random;
-
 public class Identify_Car_Make_Activity extends AppCompatActivity {
     //array that stores the name of cars that correspond to the first part of the image file can later be appended for more brands
     private final CommonFunctions cf = new CommonFunctions();
-    private final boolean ignoreError = false;
 
 
     @Override
@@ -81,7 +77,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 carMakeSpinner.setEnabled(false);
             } else {
                 // incorrect options has been chosen
-                cf.wrongAnswer(view, ignoreError);
+                cf.wrongAnswer(view, false);
                 // displaying the correct model
                 TextView correct_text = findViewById(R.id.correct_txt_view);
                 String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
