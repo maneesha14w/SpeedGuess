@@ -20,6 +20,7 @@ import java.util.Random;
 public class Identify_Car_Make_Activity extends AppCompatActivity {
     //array that stores the name of cars that correspond to the first part of the image file can later be appended for more brands
     private final CommonFunctions cf = new CommonFunctions();
+    private final boolean ignoreError = false;
 
 
     @Override
@@ -34,7 +35,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
         //setting tag for btn to check if next btn has been activated
         Button identify_btn = findViewById(R.id.identify_btn);
-        identify_btn.setTag("");
+        cf.setTagToEmpty(identify_btn);
 
         //init spinner
         spinnerSetter();
@@ -59,10 +60,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         // check btn tag if user has guessed correct answer
         if (identify_btn.getTag().equals("next")){
             Intent intent = new Intent(Identify_Car_Make_Activity.this, Identify_Car_Make_Activity.class);
-            finish();
-            overridePendingTransition(1, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            cf.resetActivity(intent, view);
         }
         else { //first time activity is being run
 
@@ -79,20 +77,11 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 Toast.makeText(this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
             } else if (selectedModel.toLowerCase().equals(correctModel)) {
                 //if the correct option has been chosen
-                Toast toast = Toast.makeText(this, "CORRECT!", Toast.LENGTH_SHORT);
-                toast.getView().setBackgroundColor(getResources().getColor(R.color.green));
-                toast.show();
-                //btn changes
-                identify_btn.setText(R.string.next_btn_txt);
-                identify_btn.setBackgroundColor(getResources().getColor(R.color.green));
-                identify_btn.setTag("next");
+                cf.correctAnswer(view, identify_btn);
                 carMakeSpinner.setEnabled(false);
             } else {
                 // incorrect options has been chosen
-                Toast toast = Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT);
-                toast.getView().setBackgroundColor(getResources().getColor(R.color.light_red));
-                toast.show();
-
+                cf.wrongAnswer(view, ignoreError);
                 // displaying the correct model
                 TextView correct_text = findViewById(R.id.correct_txt_view);
                 String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
