@@ -15,27 +15,34 @@ import java.util.Random;
 public class Identify_Image_Activity extends AppCompatActivity {
     private String chosenName = "";
     private View lastView;
+    private ImageView img_1, img_2, img_3;
+    private String fileName_1, fileName_2, fileName_3;
+    private Identify_Car_Make_Activity identifyObj = new Identify_Car_Make_Activity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_identify__image_);
 
-        ImageView img_1 = findViewById(R.id.img_1);
-        ImageView img_2 = findViewById(R.id.img_2);
-        ImageView img_3 = findViewById(R.id.img_3);
+        img_1 = findViewById(R.id.img_1);
+        img_2 = findViewById(R.id.img_2);
+        img_3 = findViewById(R.id.img_3);
         TextView textView = findViewById(R.id.textView);
         HorizontalScrollView horizontalScrollView = findViewById(R.id.horizontalScrollView);
 
-        setup(img_1, img_2, img_3, textView);
+        setup(textView);
 
     }
 
-    private void setup(ImageView img_1, ImageView img_2, ImageView img_3, TextView textView) {
-        Identify_Car_Make_Activity identifyObj = new Identify_Car_Make_Activity();
-        String fileName_1 = identifyObj.randomFileName(img_1);
-        String fileName_2 = identifyObj.randomFileName(img_2);
-        String fileName_3 = identifyObj.randomFileName(img_3);
+    private void setup(TextView textView) {
+
+        fileName_1 = identifyObj.randomFileName(img_1);
+        fileName_2 = identifyObj.randomFileName(img_2);
+        fileName_3 = identifyObj.randomFileName(img_3);
+        
+        randomnessCheck();
+
+        
         img_1.setImageResource( getResources().getIdentifier(fileName_1, "drawable", getPackageName()));
         img_2.setImageResource( getResources().getIdentifier(fileName_2, "drawable", getPackageName()));
         img_3.setImageResource( getResources().getIdentifier(fileName_3, "drawable", getPackageName()));
@@ -47,6 +54,14 @@ public class Identify_Image_Activity extends AppCompatActivity {
         chosenName = (chosenFileName.substring(chosenFileName.indexOf("_", chosenFileName.indexOf("_") + 1) + 1, chosenFileName.lastIndexOf("_")));
 
         textView.setText(chosenName.toUpperCase());
+    }
+
+    private void randomnessCheck() {
+        while (img_1.getTag() == img_2.getTag() || img_1.getTag() == img_3.getTag() || img_2.getTag() == img_3.getTag()) {
+            if (img_1.getTag() == img_2.getTag()){ fileName_1 = identifyObj.randomFileName(img_1); }
+            if (img_2.getTag() == img_3.getTag()) { fileName_2 = identifyObj.randomFileName(img_2); }
+            if (img_3.getTag() == img_1.getTag()) {fileName_3 = identifyObj.randomFileName(img_3);}
+        }
     }
 
 

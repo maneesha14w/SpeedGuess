@@ -21,6 +21,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
     //array that stores the name of cars that correspond to the first part of the image file can later be appended for more brands
     private final String[] carNames = {"ford", "mercedes", "tesla"};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
