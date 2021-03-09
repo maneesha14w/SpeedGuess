@@ -20,7 +20,9 @@
         app:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="carMakeClicked"
+        />
 
     <Button
         android:id="@+id/hints_btn"
@@ -36,7 +38,9 @@
         app:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_make_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/car_make_btn"
+        android:onClick="hintBtnClicked"
+        />
 
     <Button
         android:id="@+id/car_image_btn"
@@ -52,7 +56,9 @@
         app:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hints_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/hints_btn"
+        android:onClick="carImageBtnClicked"
+        />
 
     <Button
         android:id="@+id/advanced_level_btn"
@@ -68,7 +74,9 @@
         app:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_image_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/car_image_btn"
+        android:onClick="advancedBtnClicked"
+        />
 
     <ImageView
         android:id="@+id/imageView2"

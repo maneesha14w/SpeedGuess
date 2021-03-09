@@ -19,7 +19,8 @@ public class Identify_Image_Activity extends AppCompatActivity {
     private View lastView;
     private ImageView img_1, img_2, img_3;
     private String fileName_1, fileName_2, fileName_3;
-    private Identify_Car_Make_Activity identifyObj = new Identify_Car_Make_Activity();
+    private final CommonFunctions cf = new CommonFunctions();
+
 
 
     @Override
@@ -42,9 +43,9 @@ public class Identify_Image_Activity extends AppCompatActivity {
 
     private void setup(TextView textView) {
 
-        fileName_1 = identifyObj.randomFileName(img_1);
-        fileName_2 = identifyObj.randomFileName(img_2);
-        fileName_3 = identifyObj.randomFileName(img_3);
+        fileName_1 = cf.randomFileName(img_1);
+        fileName_2 = cf.randomFileName(img_2);
+        fileName_3 = cf.randomFileName(img_3);
         
         randomnessCheck();
 
@@ -63,9 +64,9 @@ public class Identify_Image_Activity extends AppCompatActivity {
 
     private void randomnessCheck() {
         while (img_1.getTag() == img_2.getTag() || img_1.getTag() == img_3.getTag() || img_2.getTag() == img_3.getTag()) {
-            if (img_1.getTag() == img_2.getTag()){ fileName_1 = identifyObj.randomFileName(img_1); }
-            if (img_2.getTag() == img_3.getTag()) { fileName_2 = identifyObj.randomFileName(img_2); }
-            if (img_3.getTag() == img_1.getTag()) {fileName_3 = identifyObj.randomFileName(img_3);}
+            if (img_1.getTag() == img_2.getTag()){ fileName_1 = cf.randomFileName(img_1); }
+            if (img_2.getTag() == img_3.getTag()) { fileName_2 = cf.randomFileName(img_2); }
+            if (img_3.getTag() == img_1.getTag()) {fileName_3 = cf.randomFileName(img_3);}
         }
     }
 

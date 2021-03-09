@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class Identify_Car_Make_Activity extends AppCompatActivity {
     //array that stores the name of cars that correspond to the first part of the image file can later be appended for more brands
-    private final String[] carNames = {"ford", "mercedes", "tesla"};
+    private final CommonFunctions cf = new CommonFunctions();
 
 
     @Override
@@ -29,7 +29,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
         // getting and setting the image view to a random img
         ImageView imgView = findViewById(R.id.car_img_view);
-        String randomFileName = randomFileName(imgView); //random file name
+        String randomFileName = cf.randomFileName(imgView); //random file name
         imgView.setImageResource(getResources().getIdentifier(randomFileName, "drawable", getPackageName()));
 
         //setting tag for btn to check if next btn has been activated
@@ -38,16 +38,6 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
         //init spinner
         spinnerSetter();
-    }
-
-    // method that returns string of a random file name
-    protected String randomFileName(ImageView imgView) {
-        Random rand = new Random();
-        String carName = carNames[rand.nextInt(3)]; // random index from car names array
-        String fileNum = String.valueOf(rand.nextInt(10) + 1); //Random car number
-
-        imgView.setTag(carName); //setting the tag of the ImageView to whatever make of car is selected
-        return  carName + "_" + fileNum; //string that corresponds to a random image file
     }
 
     //initialises spinner

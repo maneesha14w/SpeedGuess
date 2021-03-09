@@ -17,6 +17,7 @@ public class Hints_Activity extends AppCompatActivity {
 
     private static final ArrayList<String> list = new ArrayList<>();
     private short tries = 3;
+    private final CommonFunctions cf = new CommonFunctions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,7 @@ public class Hints_Activity extends AppCompatActivity {
 
     protected void setImage(ImageView imgView) {
         // use of identify_car_make_activity object to use randomFileName method
-        Identify_Car_Make_Activity identifyObj = new Identify_Car_Make_Activity();
-        String fileName = identifyObj.randomFileName(imgView);
+        String fileName = cf.randomFileName(imgView);
         imgView.setImageResource( getResources().getIdentifier(fileName, "drawable", getPackageName()));
     }
 
