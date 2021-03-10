@@ -27,7 +27,7 @@ public class Hints_Activity extends AppCompatActivity {
         ImageView imgView = findViewById(R.id.car_img_view);
         Button submitBtn = findViewById(R.id.submitBtnHint);
         //setting tag so it isn't null
-        submitBtn.setTag("");
+        cf.setTagToEmpty(submitBtn);
         setImage(imgView); //method that sets an ImageView
         setDashes(imgView); // method that sets the dashes which show the num of letters the user has to guess.
     }
@@ -60,10 +60,7 @@ public class Hints_Activity extends AppCompatActivity {
         if (submitBtn.getTag().equals("next")) {
             //restart activity
             Intent intent = new Intent(Hints_Activity.this, Hints_Activity.class);
-            finish();
-            overridePendingTransition(1, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            cf.resetActivity(intent, view);
         } else {
             EditText editText = findViewById(R.id.charTextBox);
             ImageView imgView = findViewById(R.id.car_img_view);
@@ -87,12 +84,8 @@ public class Hints_Activity extends AppCompatActivity {
                 newStr = newStr.replaceAll("[^" + concatStr + " ]", " _ "); // the string mirrored in the dash TextView
 
                 if (newStr.equals(correctModel)) { //if user has completed the guess
-                    Toast toast = Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT);
-                    toast.getView().setBackgroundColor(getResources().getColor(R.color.green));
-                    toast.show();
-
-                    submitBtn.setText(R.string.next_btn_txt);
-                    submitBtn.setTag("next"); //setting tag to next
+                    cf.correctAnswer(view, submitBtn); //toast
+                    cf.setTagToNext(submitBtn); //setting tag to next
                     editText.setEnabled(false);
                     list.clear(); //clear list for next car
                 }
@@ -104,14 +97,11 @@ public class Hints_Activity extends AppCompatActivity {
                     Toast.makeText(this, "Incorrect, " +  tries + " tries left", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(this, "3 tries over", Toast.LENGTH_SHORT).show();
-                    submitBtn.setText(R.string.next_btn_txt);
-                    submitBtn.setTag("next"); // tries over so need to set tag as next
+                    cf.wrongAnswer(view, false);
+                    cf.setTagToNext(submitBtn);// tries over so need to set tag as next
                     editText.setEnabled(false); //disable editText
                     String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
-                    textView.setTextColor(getResources().getColor(R.color.yellow));
-                    textView.setBackgroundColor(getResources().getColor(R.color.blue));
-                    textView.setText(displayText);
+                    cf.showCorrectAnswer(textView, view, displayText);
                     list.clear(); // clear list for next car
                 }
             }
