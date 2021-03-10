@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,40 +20,38 @@ public class Identify_Image_Activity extends AppCompatActivity {
     private String fileName_1, fileName_2, fileName_3;
     private final CommonFunctions cf = new CommonFunctions();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_identify__image_);
 
+        //init
         Button submitBtn = findViewById(R.id.submitBtn);
 
         img_1 = findViewById(R.id.img_1);
         img_2 = findViewById(R.id.img_2);
         img_3 = findViewById(R.id.img_3);
         TextView textView = findViewById(R.id.textView);
-        HorizontalScrollView horizontalScrollView = findViewById(R.id.horizontalScrollView);
 
-        submitBtn.setTag("");
-        setup(textView);
+        cf.setTagToEmpty(submitBtn);
+        setup(textView); //setups the images and the model that is to be guessed
 
     }
 
     private void setup(TextView textView) {
-
+        //get random filenames an tag set on imageView
         fileName_1 = cf.randomFileName(img_1);
         fileName_2 = cf.randomFileName(img_2);
         fileName_3 = cf.randomFileName(img_3);
         
-        randomnessCheck();
+        randomnessCheck(); //checks if all the
 
         img_1.setImageResource( getResources().getIdentifier(fileName_1, "drawable", getPackageName()));
         img_2.setImageResource( getResources().getIdentifier(fileName_2, "drawable", getPackageName()));
         img_3.setImageResource( getResources().getIdentifier(fileName_3, "drawable", getPackageName()));
 
 
-        String [] carFileNames = {fileName_1, fileName_2, fileName_3};
+        String [] carFileNames = {fileName_1, fileName_2, fileName_3}; //arr for selecting a random correct answer
         Random random = new Random();
         String chosenFileName = carFileNames[random.nextInt(3)];
         chosenName = (chosenFileName.substring(chosenFileName.indexOf("_", chosenFileName.indexOf("_") + 1) + 1, chosenFileName.lastIndexOf("_")));
@@ -75,7 +72,6 @@ public class Identify_Image_Activity extends AppCompatActivity {
         if (lastView!=null) {
             lastView.setBackgroundColor(Color.GRAY);
         }
-
         view.setBackgroundColor(getResources().getColor(R.color.green));
         lastView = view;
     }
@@ -84,25 +80,17 @@ public class Identify_Image_Activity extends AppCompatActivity {
         Button submitBtn = findViewById(R.id.submitBtn);
         if (submitBtn.getTag().equals("next")) {
             Intent intent = new Intent(Identify_Image_Activity.this, Identify_Image_Activity.class);
-            finish();
-            overridePendingTransition(1, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            cf.resetActivity(intent, view);
         }
         else {
-            if (lastView == null) {
+            if (lastView == null) { //no image has been selected
                 Toast.makeText(this, "Please pick an image and submit!", Toast.LENGTH_SHORT).show();
-            } else if (lastView.getTag().equals(chosenName)) {
-                Toast toast = Toast.makeText(this, "CORRECT!", Toast.LENGTH_SHORT);
-                toast.getView().setBackgroundColor(getResources().getColor(R.color.green));
-                toast.show();
+            } else if (lastView.getTag().equals(chosenName)) { //
+                cf.correctAnswer(view, submitBtn);
             } else {
-                Toast toast = Toast.makeText(this, "WRONG!", Toast.LENGTH_SHORT);
-                toast.getView().setBackgroundColor(getResources().getColor(R.color.red));
-                toast.show();
+                cf.wrongAnswer(view, false);
             }
-            submitBtn.setTag("next");
-            submitBtn.setText("Next");
+            cf.setTagToNext(submitBtn);
         }
     }
 }
