@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
         <activity
+            android:name=".Advanced_Level_Activity"
+            android:label="Advanced Level"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maneesha14w.speedguess.MainActivity" />
+        </activity>
+        <activity
             android:name=".Identify_Image_Activity"
             android:label="Identify Picture"
             android:parentActivityName=".MainActivity">

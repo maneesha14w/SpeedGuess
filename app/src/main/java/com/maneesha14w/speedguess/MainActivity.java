@@ -35,10 +35,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void advancedBtnClicked(View view) {
-        Log.d("BTN_CLICK", "Advanced level btn clicked");
+        Intent intent = new Intent(this, Advanced_Level_Activity.class);
+        startActivity(intent);
     }
-
-
 
 
 }
