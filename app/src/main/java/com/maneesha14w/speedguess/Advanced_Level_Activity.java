@@ -34,16 +34,19 @@ public class Advanced_Level_Activity extends AppCompatActivity {
 
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        for (int i=1; i<4; i++) {
+        for (int i = 1; i < 4; i++) {
             View view = inflater.inflate(R.layout.image_and_edit, imgSlide, false);
             ImageView imgView = view.findViewById(R.id.img);
             EditText edit_text = view.findViewById(R.id.edit_text);
             edit_text.setId(i);
-            
-            String fileName = cf.randomFileName(imgView);;
+
+            String fileName = cf.randomFileName(imgView);
+            ;
+
             while (selectedNames.contains(imgView.getTag().toString())) {
                 fileName = cf.randomFileName(imgView);
             }
+
             selectedNames.add(imgView.getTag().toString());
             imgView.setImageResource(getResources().getIdentifier(fileName, "drawable", getPackageName()));
             imgSlide.addView(view);
@@ -51,8 +54,7 @@ public class Advanced_Level_Activity extends AppCompatActivity {
     }
 
 
-
     public void imgBtnClicked(View view) {
-        Toast.makeText(this, view.getTag().toString() + " " +view.getId(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, view.getTag().toString() + " " + view.getId(), Toast.LENGTH_SHORT).show();
     }
 }

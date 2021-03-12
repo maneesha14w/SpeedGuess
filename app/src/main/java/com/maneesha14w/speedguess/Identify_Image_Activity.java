@@ -43,8 +43,8 @@ public class Identify_Image_Activity extends AppCompatActivity {
         fileName_1 = cf.randomFileName(img_1);
         fileName_2 = cf.randomFileName(img_2);
         fileName_3 = cf.randomFileName(img_3);
-        
-        randomnessCheck(); //checks if all the
+
+        uniqueCheck(); //checks if all the images are unique
 
         img_1.setImageResource( getResources().getIdentifier(fileName_1, "drawable", getPackageName()));
         img_2.setImageResource( getResources().getIdentifier(fileName_2, "drawable", getPackageName()));
@@ -59,15 +59,14 @@ public class Identify_Image_Activity extends AppCompatActivity {
         textView.setText(chosenName.toUpperCase());
     }
 
-    private void randomnessCheck() {
+
+    private void uniqueCheck() {
         while (img_1.getTag() == img_2.getTag() || img_1.getTag() == img_3.getTag() || img_2.getTag() == img_3.getTag()) {
             if (img_1.getTag() == img_2.getTag()){ fileName_1 = cf.randomFileName(img_1); }
             if (img_2.getTag() == img_3.getTag()) { fileName_2 = cf.randomFileName(img_2); }
             if (img_3.getTag() == img_1.getTag()) {fileName_3 = cf.randomFileName(img_3);}
         }
     }
-
-
 
     public void imageBtnClick(View view) {
         if (lastView!=null) {
