@@ -68,6 +68,7 @@ public class Identify_Image_Activity extends AppCompatActivity {
     }
 
 
+
     public void imageBtnClick(View view) {
         if (lastView!=null) {
             lastView.setBackgroundColor(Color.GRAY);

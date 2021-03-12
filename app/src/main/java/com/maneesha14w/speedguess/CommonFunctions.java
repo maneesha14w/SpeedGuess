@@ -64,4 +64,10 @@ public class CommonFunctions {
         textView.setTextColor(view.getResources().getColor(R.color.yellow));
         textView.setText(displayText);
     }
+
+    public String randomness(){
+
+
+        return "";
+    }
 }
