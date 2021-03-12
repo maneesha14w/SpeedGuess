@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,6 +90,9 @@ public class Advanced_Level_Activity extends AppCompatActivity {
         if (isCorrect_1 && isCorrect_2 && isCorrect_3) {
             cf.correctAnswer(view, submitBtn);
         }
+        TextView score_tv = findViewById(R.id.score_text_view);
+        String scoreText = getString(R.string.score_text) + String.valueOf(score);
+        score_tv.setText(scoreText);
     }
 
     private boolean isCorrect(EditText edt, String e_msg, String correct) {
