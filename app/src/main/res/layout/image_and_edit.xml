@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="188dp"
@@ -12,17 +12,16 @@
         android:id="@+id/img"
         android:layout_width="420dp"
         android:layout_height="525dp"
-        android:contentDescription="@string/submit_txt"
-        android:onClick="imgBtnClicked"
-        />
+        android:contentDescription="@string/submit_txt" />
 
     <EditText
         android:id="@+id/edit_text"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/name_text"
-        android:inputType="textPersonName"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="textPersonName" />
 
 </LinearLayout>

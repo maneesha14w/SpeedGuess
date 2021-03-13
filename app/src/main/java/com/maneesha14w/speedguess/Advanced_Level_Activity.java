@@ -1,6 +1,7 @@
 package com.maneesha14w.speedguess;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,8 @@ public class Advanced_Level_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced__level);
-
+        Button submitBtn = findViewById(R.id.submitBtn);
+        cf.setTagToEmpty(submitBtn);
         setImage();
     }
 
@@ -66,33 +68,42 @@ public class Advanced_Level_Activity extends AppCompatActivity {
 
     public void submitBtnClick(View view) {
         Button submitBtn = findViewById(R.id.submitBtn);
-        ImageView img_1 = findViewById(R.id.Img_1);
-        ImageView img_2 = findViewById(R.id.Img_2);
-        ImageView img_3 = findViewById(R.id.Img_3);
-        String correct_1 = img_1.getTag().toString();
-        String correct_2 = img_2.getTag().toString();
-        String correct_3 = img_3.getTag().toString();
-        EditText edt_1 = findViewById(R.id.Edit_1);
-        EditText edt_2 = findViewById(R.id.Edit_2);
-        EditText edt_3 = findViewById(R.id.Edit_3);
-        String e1_msg = edt_1.getText().toString().toLowerCase();
-        String e2_msg = edt_2.getText().toString().toLowerCase();
-        String e3_msg = edt_3.getText().toString().toLowerCase();
-
-        if (e1_msg.equals("") || e2_msg.equals("") || e3_msg.equals("")) {
-            Toast.makeText(this, "Please Fill in all Text Boxes", Toast.LENGTH_SHORT).show();
-        } else {
-            isCorrect_1 = isCorrect(edt_1, e1_msg,correct_1);
-            isCorrect_2 = isCorrect(edt_2, e2_msg,correct_2);
-            isCorrect_3 = isCorrect(edt_3, e3_msg,correct_3);
+        if (submitBtn.getTag().equals("next")){
+            Intent intent = new Intent(Advanced_Level_Activity.this, Advanced_Level_Activity.class);
+            cf.resetActivity(intent, view);
         }
+        else {
+            ImageView img_1 = findViewById(R.id.Img_1);
+            ImageView img_2 = findViewById(R.id.Img_2);
+            ImageView img_3 = findViewById(R.id.Img_3);
+            String correct_1 = img_1.getTag().toString();
+            String correct_2 = img_2.getTag().toString();
+            String correct_3 = img_3.getTag().toString();
+            EditText edt_1 = findViewById(R.id.Edit_1);
+            EditText edt_2 = findViewById(R.id.Edit_2);
+            EditText edt_3 = findViewById(R.id.Edit_3);
+            String e1_msg = edt_1.getText().toString().toLowerCase();
+            String e2_msg = edt_2.getText().toString().toLowerCase();
+            String e3_msg = edt_3.getText().toString().toLowerCase();
 
-        if (isCorrect_1 && isCorrect_2 && isCorrect_3) {
-            cf.correctAnswer(view, submitBtn);
+            if (e1_msg.equals("") || e2_msg.equals("") || e3_msg.equals("")) {
+                Toast.makeText(this, "Please Fill in all Text Boxes", Toast.LENGTH_SHORT).show();
+            } else {
+                isCorrect_1 = isCorrect(edt_1, e1_msg, correct_1);
+                isCorrect_2 = isCorrect(edt_2, e2_msg, correct_2);
+                isCorrect_3 = isCorrect(edt_3, e3_msg, correct_3);
+            }
+
+            TextView score_tv = findViewById(R.id.score_text_view);
+            if (isCorrect_1 && isCorrect_2 && isCorrect_3) {
+                cf.correctAnswer(view, submitBtn);
+                score = 3;
+                cf.setTagToNext(submitBtn);
+            }
+
+            String scoreText = getString(R.string.score_text) + " " + String.valueOf(score);
+            score_tv.setText(scoreText);
         }
-        TextView score_tv = findViewById(R.id.score_text_view);
-        String scoreText = getString(R.string.score_text) + String.valueOf(score);
-        score_tv.setText(scoreText);
     }
 
     private boolean isCorrect(EditText edt, String e_msg, String correct) {
