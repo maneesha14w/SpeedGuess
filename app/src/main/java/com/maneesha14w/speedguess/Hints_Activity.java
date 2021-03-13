@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class Hints_Activity extends AppCompatActivity {
 
     private static final ArrayList<String> list = new ArrayList<>();
-    private short tries = 3;
     private final CommonFunctions cf = new CommonFunctions();
+    private short tries = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class Hints_Activity extends AppCompatActivity {
     protected void setImage(ImageView imgView) {
         // use of identify_car_make_activity object to use randomFileName method
         String fileName = cf.randomFileName(imgView);
-        imgView.setImageResource( getResources().getIdentifier(fileName, "drawable", getPackageName()));
+        imgView.setImageResource(getResources().getIdentifier(fileName, "drawable", getPackageName()));
     }
 
 
@@ -44,9 +44,9 @@ public class Hints_Activity extends AppCompatActivity {
         String correctModel = imgView.getTag().toString(); // the tag has the correct model stored.
 
         // used a loop to concat underscores
-        String finalDash="";
+        String finalDash = "";
         for (int i = 0; i < correctModel.length(); i++) {
-            if (correctModel.charAt(i) != ' '){
+            if (correctModel.charAt(i) != ' ') {
                 finalDash = finalDash.concat(" _ ");
             }
         }
@@ -94,9 +94,8 @@ public class Hints_Activity extends AppCompatActivity {
             } else { //char not found in correctModel
                 tries--;
                 if (tries > 0) {
-                    Toast.makeText(this, "Incorrect, " +  tries + " tries left", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                    Toast.makeText(this, "Incorrect, " + tries + " tries left", Toast.LENGTH_SHORT).show();
+                } else {
                     cf.wrongAnswer(view, false);
                     cf.setTagToNext(submitBtn);// tries over so need to set tag as next
                     editText.setEnabled(false); //disable editText

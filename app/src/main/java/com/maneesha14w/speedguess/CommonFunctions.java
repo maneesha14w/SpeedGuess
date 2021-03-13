@@ -35,7 +35,7 @@ public class CommonFunctions {
     }
 
     public String capitalize(String str) {
-        return str.substring(0,1).toUpperCase() + str.substring(1);
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     public void resetActivity(Intent intent, View view) {
@@ -52,13 +52,12 @@ public class CommonFunctions {
         setTagToNext(btn);
     }
 
-    public void wrongAnswer(View view,  boolean ignoreError) {
+    public void wrongAnswer(View view, boolean ignoreError) {
         if (!ignoreError) {
             Toast toast = Toast.makeText((Activity) view.getContext(), "INCORRECT!", Toast.LENGTH_SHORT);
             toast.getView().setBackgroundColor(view.getResources().getColor(R.color.light_red));
             toast.show();
-        }
-        else {
+        } else {
             System.out.println("ignore error true");
         }
     }
@@ -68,7 +67,7 @@ public class CommonFunctions {
         textView.setText(displayText);
     }
 
-    public String randomness(){
+    public String randomness() {
 
 
         return "";

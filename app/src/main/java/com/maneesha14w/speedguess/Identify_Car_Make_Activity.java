@@ -2,6 +2,7 @@ package com.maneesha14w.speedguess;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,9 +13,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 public class Identify_Car_Make_Activity extends AppCompatActivity {
     //array that stores the name of cars that correspond to the first part of the image file can later be appended for more brands
     private final CommonFunctions cf = new CommonFunctions();
+    private TextView timer_tv;
+
 
 
     @Override
@@ -33,16 +39,34 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
         //init spinner
         spinnerSetter();
+
+        timer_tv = findViewById(R.id.timer_tv);
+
+        new CountDownTimer(20000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+               timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
+               if (millisUntilFinished < 10000) {
+                   timer_tv.setTextColor(getResources().getColor(R.color.light_red));
+
+               }
+            }
+
+            public void onFinish() {
+                identifyBtnClick(timer_tv.getRootView());
+            }
+        }.start();
+
     }
 
     //initialises spinner
     private void spinnerSetter() {
         Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner); //get id of spinner
 
-        String [] carMakeNames = getResources().getStringArray(R.array.car_names_array); //array to hold names of models
+        String[] carMakeNames = getResources().getStringArray(R.array.car_names_array); //array to hold names of models
 
         // adapter draws spinner
-        ArrayAdapter<String> adapter  = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carMakeNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carMakeNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); //sets resource of a string array in strings.xml
         carMakeSpinner.setAdapter(adapter); //setting the adapter to the spinner
     }
@@ -52,11 +76,10 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         Button identify_btn = findViewById(R.id.identify_btn);
 
         // check btn tag if user has guessed correct answer
-        if (identify_btn.getTag().equals("next")){
+        if (identify_btn.getTag().equals("next")) {
             Intent intent = new Intent(Identify_Car_Make_Activity.this, Identify_Car_Make_Activity.class);
             cf.resetActivity(intent, view);
-        }
-        else { //first time activity is being run
+        } else { //first time activity is being run
 
             //get the item currently in spinner
             Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
@@ -78,13 +101,12 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 cf.wrongAnswer(view, false);
                 // displaying the correct model
                 TextView correct_text = findViewById(R.id.correct_txt_view);
-                String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
+                String displayText = "Correct Model: " + (correctModel.substring(0, 1).toUpperCase() + correctModel.substring(1));
                 correct_text.setText(displayText);
                 // added a delay and removed the textView.
-                correct_text.postDelayed(new Runnable(){
+                correct_text.postDelayed(new Runnable() {
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         correct_text.setVisibility(View.GONE);
                     }
                 }, 3500);

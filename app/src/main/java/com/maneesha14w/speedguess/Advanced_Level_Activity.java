@@ -70,11 +70,10 @@ public class Advanced_Level_Activity extends AppCompatActivity {
         tries--;
 
         Button submitBtn = findViewById(R.id.submitBtn);
-        if (submitBtn.getTag().equals("next")){
+        if (submitBtn.getTag().equals("next")) {
             Intent intent = new Intent(Advanced_Level_Activity.this, Advanced_Level_Activity.class);
             cf.resetActivity(intent, view);
-        }
-        else {
+        } else {
             ImageView img_1 = findViewById(R.id.Img_1);
             ImageView img_2 = findViewById(R.id.Img_2);
             ImageView img_3 = findViewById(R.id.Img_3);
@@ -117,7 +116,7 @@ public class Advanced_Level_Activity extends AppCompatActivity {
         }
     }
 
-    private void showAnswer(String correct_text,  EditText edt_text) {
+    private void showAnswer(String correct_text, EditText edt_text) {
         edt_text.setText(cf.capitalize(correct_text));
         edt_text.setTextColor(getResources().getColor(R.color.yellow));
         edt_text.setEnabled(false);
@@ -127,8 +126,7 @@ public class Advanced_Level_Activity extends AppCompatActivity {
         if (e_msg.equals(correct)) {
             correctAnswer(edt);
             return true;
-        }
-        else {
+        } else {
             wrongAnswer(edt);
             return false;
         }

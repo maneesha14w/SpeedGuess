@@ -49,13 +49,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:fontFamily="@font/rubik_bold"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/rubik_bold"
-        android:textSize="18sp"
-        android:textColor="@color/blue"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

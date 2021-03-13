@@ -22,12 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_img_view"
         android:fontFamily="@font/rubik_bold"
         android:textSize="18sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_img_view" />
 
     <EditText
         android:id="@+id/charTextBox"
@@ -36,34 +35,32 @@
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:layout_marginBottom="48dp"
+        android:digits="@string/accepted_chars"
         android:ems="10"
         android:hint="@string/guess_letters_text"
+        android:importantForAutofill="no"
         android:inputType="text"
+        android:maxLength="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:maxLength="1"
-        android:digits="@string/accepted_chars"
-        android:importantForAutofill="no"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/submitBtnHint"
+        style="@style/Theme.MaterialComponents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:text="@string/submit_txt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/charTextBox"
-        android:onClick="addCharClick"
         android:background="@color/blue"
         android:fontFamily="@font/karla_regular"
+        android:onClick="addCharClick"
+        android:text="@string/submit_txt"
         android:textColor="@color/white"
         android:textSize="22sp"
-        style="@style/Theme.MaterialComponents"
         app:backgroundTint="@color/blue"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/charTextBox" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,9 @@
     <string name="image_2">image 2</string>
     <string name="image_3">image 3</string>
     <string name="name_text">Name</string>
-    <string name="score_text">Score - </string>
+    <string name="score_text">Score: </string>
+    <string name="timer_text">Timer</string>
+    <string name="times_up">Times Up</string>
     <string-array name="car_names_array">
         <item>Select Model</item>
         <item>Mercedes</item>

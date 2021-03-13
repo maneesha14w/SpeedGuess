@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <resources>
-        <item type="id" name="Img_1" />
-        <item type="id" name="Img_2" />
-        <item type="id" name="Img_3" />
-        <item type="id" name="Edit_1" />
-        <item type="id" name="Edit_2" />
-        <item type="id" name="Edit_3" />
-    </resources>
+<resources>
+    <item name="Img_1" type="id" />
+    <item name="Img_2" type="id" />
+    <item name="Img_3" type="id" />
+    <item name="Edit_1" type="id" />
+    <item name="Edit_2" type="id" />
+    <item name="Edit_3" type="id" />
+</resources>

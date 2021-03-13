@@ -11,18 +11,17 @@
         style="@style/Theme.MaterialComponents"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="290dp"
         android:background="@color/blue"
         android:fontFamily="@font/karla_regular"
+        android:onClick="carMakeClicked"
         android:text="@string/identify_car_str"
         android:textColor="@color/white"
         android:textSize="25sp"
         app:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="carMakeClicked"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/hints_btn"
@@ -32,15 +31,14 @@
         android:layout_marginTop="64dp"
         android:background="@color/red"
         android:fontFamily="@font/karla_regular"
+        android:onClick="hintBtnClicked"
         android:text="@string/hints_str"
         android:textColor="@color/white"
         android:textSize="22sp"
         app:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_make_btn"
-        android:onClick="hintBtnClicked"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/car_make_btn" />
 
     <Button
         android:id="@+id/car_image_btn"
@@ -50,15 +48,14 @@
         android:layout_marginTop="64dp"
         android:background="@color/blue"
         android:fontFamily="@font/karla_regular"
+        android:onClick="carImageBtnClicked"
         android:text="@string/identify_car_image_str"
         android:textColor="@color/white"
         android:textSize="25sp"
         app:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hints_btn"
-        android:onClick="carImageBtnClicked"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/hints_btn" />
 
     <Button
         android:id="@+id/advanced_level_btn"
@@ -68,24 +65,37 @@
         android:layout_marginTop="64dp"
         android:background="@color/red"
         android:fontFamily="@font/karla_regular"
+        android:onClick="advancedBtnClicked"
         android:text="@string/advanced_level_str"
         android:textColor="@color/white"
         android:textSize="25sp"
         app:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_image_btn"
-        android:onClick="advancedBtnClicked"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/car_image_btn" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="325dp"
-        android:layout_height="332dp"
+        android:layout_width="363dp"
+        android:layout_height="268dp"
         android:contentDescription="@string/illustration_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_drawkit_transport" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/timer_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/rubik_bold"
+        android:text="@string/timer_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advanced_level_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
