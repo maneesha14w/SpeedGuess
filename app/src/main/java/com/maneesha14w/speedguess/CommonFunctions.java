@@ -34,6 +34,9 @@ public class CommonFunctions {
         btn.setTag("next");
     }
 
+    public String capitalize(String str) {
+        return str.substring(0,1).toUpperCase() + str.substring(1);
+    }
 
     public void resetActivity(Intent intent, View view) {
         ((Activity) view.getContext()).finish();

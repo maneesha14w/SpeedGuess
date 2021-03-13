@@ -67,6 +67,8 @@ public class Advanced_Level_Activity extends AppCompatActivity {
     }
 
     public void submitBtnClick(View view) {
+        tries--;
+
         Button submitBtn = findViewById(R.id.submitBtn);
         if (submitBtn.getTag().equals("next")){
             Intent intent = new Intent(Advanced_Level_Activity.this, Advanced_Level_Activity.class);
@@ -86,24 +88,39 @@ public class Advanced_Level_Activity extends AppCompatActivity {
             String e2_msg = edt_2.getText().toString().toLowerCase();
             String e3_msg = edt_3.getText().toString().toLowerCase();
 
-            if (e1_msg.equals("") || e2_msg.equals("") || e3_msg.equals("")) {
-                Toast.makeText(this, "Please Fill in all Text Boxes", Toast.LENGTH_SHORT).show();
-            } else {
-                isCorrect_1 = isCorrect(edt_1, e1_msg, correct_1);
-                isCorrect_2 = isCorrect(edt_2, e2_msg, correct_2);
-                isCorrect_3 = isCorrect(edt_3, e3_msg, correct_3);
-            }
-
-            TextView score_tv = findViewById(R.id.score_text_view);
-            if (isCorrect_1 && isCorrect_2 && isCorrect_3) {
-                cf.correctAnswer(view, submitBtn);
-                score = 3;
+            if (tries == 0 && (!isCorrect_1 || !isCorrect_2 || !isCorrect_3)) {
+                cf.wrongAnswer(view, false);
+                showAnswer(correct_1, edt_1);
+                showAnswer(correct_2, edt_2);
+                showAnswer(correct_3, edt_3);
                 cf.setTagToNext(submitBtn);
-            }
+            } else {
 
-            String scoreText = getString(R.string.score_text) + " " + String.valueOf(score);
-            score_tv.setText(scoreText);
+                if (e1_msg.equals("") || e2_msg.equals("") || e3_msg.equals("")) {
+                    Toast.makeText(this, "Please Fill in all Text Boxes", Toast.LENGTH_SHORT).show();
+                } else {
+                    isCorrect_1 = isCorrect(edt_1, e1_msg, correct_1);
+                    isCorrect_2 = isCorrect(edt_2, e2_msg, correct_2);
+                    isCorrect_3 = isCorrect(edt_3, e3_msg, correct_3);
+                }
+
+                TextView score_tv = findViewById(R.id.score_text_view);
+                if (isCorrect_1 && isCorrect_2 && isCorrect_3) {
+                    cf.correctAnswer(view, submitBtn);
+                    score = 3;
+                    cf.setTagToNext(submitBtn);
+                }
+
+                String scoreText = getString(R.string.score_text) + " " + String.valueOf(score);
+                score_tv.setText(scoreText);
+            }
         }
+    }
+
+    private void showAnswer(String correct_text,  EditText edt_text) {
+        edt_text.setText(cf.capitalize(correct_text));
+        edt_text.setTextColor(getResources().getColor(R.color.yellow));
+        edt_text.setEnabled(false);
     }
 
     private boolean isCorrect(EditText edt, String e_msg, String correct) {

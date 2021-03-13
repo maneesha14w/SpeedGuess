@@ -100,7 +100,7 @@ public class Hints_Activity extends AppCompatActivity {
                     cf.wrongAnswer(view, false);
                     cf.setTagToNext(submitBtn);// tries over so need to set tag as next
                     editText.setEnabled(false); //disable editText
-                    String displayText = "Correct Model: " + (correctModel.substring(0,1).toUpperCase() + correctModel.substring(1));
+                    String displayText = "Correct Model: " + cf.capitalize(correctModel);
                     cf.showCorrectAnswer(textView, view, displayText);
                     list.clear(); // clear list for next car
                 }
