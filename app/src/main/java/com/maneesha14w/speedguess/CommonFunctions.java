@@ -72,4 +72,17 @@ public class CommonFunctions {
 
         return "";
     }
+
+    public void correctAnswerCarMake(Identify_Car_Make_Activity carMakeActivity, Button btn) {
+        Toast toast = Toast.makeText(carMakeActivity, "CORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(carMakeActivity.getResources().getColor(R.color.green));
+        toast.show();
+        setTagToNext(btn);
+    }
+
+    public void wrongAnswerCarMake(Identify_Car_Make_Activity carMakeActivity) {
+        Toast toast = Toast.makeText(carMakeActivity, "INCORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(carMakeActivity.getResources().getColor(R.color.light_red));
+        toast.show();
+    }
 }

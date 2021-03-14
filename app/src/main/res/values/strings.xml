@@ -19,6 +19,7 @@
     <string name="score_text">Score: </string>
     <string name="timer_text">Timer</string>
     <string name="times_up">Times Up</string>
+    <string name="times_up_txt">Time\'s Up!</string>
     <string-array name="car_names_array">
         <item>Select Model</item>
         <item>Mercedes</item>

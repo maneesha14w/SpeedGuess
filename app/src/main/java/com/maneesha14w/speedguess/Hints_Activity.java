@@ -2,6 +2,7 @@ package com.maneesha14w.speedguess;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ public class Hints_Activity extends AppCompatActivity {
     private static final ArrayList<String> list = new ArrayList<>();
     private final CommonFunctions cf = new CommonFunctions();
     private short tries = 3;
+    private TextView timer_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,24 @@ public class Hints_Activity extends AppCompatActivity {
         cf.setTagToEmpty(submitBtn);
         setImage(imgView); //method that sets an ImageView
         setDashes(imgView); // method that sets the dashes which show the num of letters the user has to guess.
+
+
+        timer_tv = findViewById(R.id.timer_tv);
+        new CountDownTimer(20000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
+                if (millisUntilFinished < 10000) {
+                    timer_tv.setTextColor(getResources().getColor(R.color.light_red));
+
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
     }
 
     protected void setImage(ImageView imgView) {

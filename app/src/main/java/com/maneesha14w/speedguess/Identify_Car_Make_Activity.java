@@ -53,10 +53,36 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                identifyBtnClick(timer_tv.getRootView());
+                timer_tv.setText(R.string.times_up_txt);
+                Button identify_btn = findViewById(R.id.identify_btn);
+
+                Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
+                String selectedModel = carMakeSpinner.getSelectedItem().toString();
+
+                // get the correct answer
+                ImageView imgView = findViewById(R.id.car_img_view);
+                String correctModel = imgView.getTag().toString();
+
+                if (selectedModel.equals("Select Model")) {
+                    Toast.makeText(Identify_Car_Make_Activity.this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
+            } else if (selectedModel.toLowerCase().equals(correctModel)) {
+                //if the correct option has been chosen
+                cf.correctAnswerCarMake(Identify_Car_Make_Activity.this, identify_btn);
+                carMakeSpinner.setEnabled(false);
+            } else {
+                        // incorrect options has been chosen
+                    cf.wrongAnswerCarMake(Identify_Car_Make_Activity.this);
+                    // displaying the correct model
+                    TextView correct_text = findViewById(R.id.correct_txt_view);
+                    String displayText = "Correct Model: " + (correctModel.substring(0, 1).toUpperCase() + correctModel.substring(1));
+                    correct_text.setText(displayText);
+                    // added a delay and removed the textView.
+                    correct_text.postDelayed(() -> correct_text.setVisibility(View.GONE), 3500);
+                    carMakeSpinner.setEnabled(false);
+                    cf.setTagToNext(identify_btn);
+                }
             }
         }.start();
-
     }
 
     //initialises spinner
@@ -104,12 +130,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
                 String displayText = "Correct Model: " + (correctModel.substring(0, 1).toUpperCase() + correctModel.substring(1));
                 correct_text.setText(displayText);
                 // added a delay and removed the textView.
-                correct_text.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        correct_text.setVisibility(View.GONE);
-                    }
-                }, 3500);
+                correct_text.postDelayed(() -> correct_text.setVisibility(View.GONE), 3500);
                 carMakeSpinner.setEnabled(false);
                 cf.setTagToNext(identify_btn);
             }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Hints_Activity">
 
+
     <ImageView
         android:id="@+id/car_img_view"
         android:layout_width="420dp"
@@ -61,6 +62,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/charTextBox" />
+
+    <TextView
+        android:id="@+id/timer_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="250dp"
+        app:layout_constraintBottom_toTopOf="@+id/car_img_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/rubik_bold"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
