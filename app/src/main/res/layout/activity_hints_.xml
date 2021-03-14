@@ -64,7 +64,7 @@
         app:layout_constraintStart_toEndOf="@+id/charTextBox" />
 
     <TextView
-        android:id="@+id/timer_tv"
+        android:id="@+id/hint_timer_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
@@ -77,7 +77,6 @@
         android:textColor="@color/blue"
         android:textSize="20sp"
         />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

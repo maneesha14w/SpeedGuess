@@ -43,7 +43,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
         timer_tv = findViewById(R.id.timer_tv);
 
         new CountDownTimer(20000, 1000) {
-
+            @Override
             public void onTick(long millisUntilFinished) {
                timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
                if (millisUntilFinished < 10000) {
@@ -51,7 +51,7 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
                }
             }
-
+            @Override
             public void onFinish() {
                 timer_tv.setText(R.string.times_up_txt);
                 Button identify_btn = findViewById(R.id.identify_btn);

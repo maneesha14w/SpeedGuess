@@ -85,4 +85,39 @@ public class CommonFunctions {
         toast.getView().setBackgroundColor(carMakeActivity.getResources().getColor(R.color.light_red));
         toast.show();
     }
+
+
+    public void correctAnswerHints(Hints_Activity hints_activity, Button btn) {
+        Toast toast = Toast.makeText(hints_activity, "CORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(hints_activity.getResources().getColor(R.color.green));
+        toast.show();
+        setTagToNext(btn);
+    }
+
+
+    public void wrongAnswerHints(Hints_Activity hints_activity) {
+        Toast toast = Toast.makeText(hints_activity, "INCORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(hints_activity.getResources().getColor(R.color.light_red));
+        toast.show();
+    }
 }
+
+
+//        timer_tv = findViewById(R.id.timer_tv);
+//                new CountDownTimer(20000, 1000) {
+//
+//public void onTick(long millisUntilFinished) {
+//        timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
+//        if (millisUntilFinished < 10000) {
+//        timer_tv.setTextColor(getResources().getColor(R.color.light_red));
+//
+//        }
+//        }
+//
+//@Override
+//public void onFinish() {
+//        timer_tv.setText(R.string.times_up_txt);
+//
+//
+//        }
+//        };

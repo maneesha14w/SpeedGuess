@@ -19,7 +19,7 @@ public class Hints_Activity extends AppCompatActivity {
     private static final ArrayList<String> list = new ArrayList<>();
     private final CommonFunctions cf = new CommonFunctions();
     private short tries = 3;
-    private TextView timer_tv;
+    private TextView hint_timer_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,24 +32,44 @@ public class Hints_Activity extends AppCompatActivity {
         cf.setTagToEmpty(submitBtn);
         setImage(imgView); //method that sets an ImageView
         setDashes(imgView); // method that sets the dashes which show the num of letters the user has to guess.
+        
+        hint_timer_tv = findViewById(R.id.hint_timer_tv);
 
 
-        timer_tv = findViewById(R.id.timer_tv);
-        new CountDownTimer(20000, 1000) {
+        new CountDownTimer(5000, 1000) {
 
+            @Override
             public void onTick(long millisUntilFinished) {
-                timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
+                hint_timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
                 if (millisUntilFinished < 10000) {
-                    timer_tv.setTextColor(getResources().getColor(R.color.light_red));
-
+                    hint_timer_tv.setTextColor(getResources().getColor(R.color.light_red));
                 }
             }
 
             @Override
             public void onFinish() {
-
+                tries--;
+                if (tries < 1) { //tries over
+                    hint_timer_tv.setText(R.string.times_up);
+                    cf.wrongAnswerHints(Hints_Activity.this);
+                    cf.setTagToNext(submitBtn);
+                    EditText editText = findViewById(R.id.charTextBox);
+                    editText.setEnabled(false);
+                }
+                else {
+                    ImageView imgView = findViewById(R.id.car_img_view);
+                    TextView textView = findViewById(R.id.dashTextView);
+                    Button submitBtn = findViewById(R.id.submitBtnHint);
+                    if (imgView.getTag() == textView.getText().toString()) {
+                        cf.correctAnswerHints(Hints_Activity.this, submitBtn);
+                    } else {
+                        Toast.makeText(Hints_Activity.this, tries + " tries left! Hurry up", Toast.LENGTH_SHORT).show();
+                        this.cancel();
+                        this.start();
+                    }
+                }
             }
-        };
+        }.start();
     }
 
     protected void setImage(ImageView imgView) {
