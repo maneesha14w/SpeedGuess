@@ -67,12 +67,6 @@ public class CommonFunctions {
         textView.setText(displayText);
     }
 
-    public String randomness() {
-
-
-        return "";
-    }
-
     public void correctAnswerCarMake(Identify_Car_Make_Activity carMakeActivity, Button btn) {
         Toast toast = Toast.makeText(carMakeActivity, "CORRECT!", Toast.LENGTH_SHORT);
         toast.getView().setBackgroundColor(carMakeActivity.getResources().getColor(R.color.green));
@@ -113,25 +107,19 @@ public class CommonFunctions {
         toast.getView().setBackgroundColor(identify_image_activity.getResources().getColor(R.color.light_red));
         toast.show();
     }
-}
 
-//
-//        timer_tv = findViewById(R.id.timer_tv);
-//                new CountDownTimer(20000, 1000) {
-//
-//                    @Override
-//public void onTick(long millisUntilFinished) {
-//        timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
-//        if (millisUntilFinished < 10000) {
-//        timer_tv.setTextColor(getResources().getColor(R.color.light_red));
-//
-//        }
-//        }
-//
-//@Override
-//public void onFinish() {
-//        timer_tv.setText(R.string.times_up_txt);
-//
-//
-//        }
-//        }.start;
+
+    public void wrongAnswerAdvanced(Advanced_Level_Activity advanced_level_activity, Button btn) {
+        Toast toast = Toast.makeText(advanced_level_activity, "CORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(advanced_level_activity.getResources().getColor(R.color.green));
+        toast.show();
+        setTagToNext(btn);
+    }
+
+    public void correctAnswerAdvanced(Advanced_Level_Activity advanced_level_activity, Button btn) {
+        Toast toast = Toast.makeText(advanced_level_activity, "CORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(advanced_level_activity.getResources().getColor(R.color.green));
+        toast.show();
+        setTagToNext(btn);
+    }
+}
