@@ -36,7 +36,7 @@ public class Hints_Activity extends AppCompatActivity {
         hint_timer_tv = findViewById(R.id.hint_timer_tv);
 
 
-        new CountDownTimer(5000, 1000) {
+        new CountDownTimer(20000, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {

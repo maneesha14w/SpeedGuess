@@ -12,7 +12,9 @@
         <activity
             android:name=".Advanced_Level_Activity"
             android:label="Advanced Level"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation = "portrait"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maneesha14w.speedguess.MainActivity" />
@@ -20,7 +22,9 @@
         <activity
             android:name=".Identify_Image_Activity"
             android:label="Identify Picture"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation = "portrait"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maneesha14w.speedguess.MainActivity" />
@@ -28,7 +32,9 @@
         <activity
             android:name=".Hints_Activity"
             android:label="Guess with Hints"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation = "portrait"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maneesha14w.speedguess.MainActivity" />
@@ -36,7 +42,9 @@
         <activity
             android:name=".Identify_Car_Make_Activity"
             android:label="Identify Car Make"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation = "portrait"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maneesha14w.speedguess.MainActivity" />

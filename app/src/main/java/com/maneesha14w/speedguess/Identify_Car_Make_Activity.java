@@ -42,47 +42,54 @@ public class Identify_Car_Make_Activity extends AppCompatActivity {
 
         timer_tv = findViewById(R.id.timer_tv);
 
-        new CountDownTimer(20000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-               timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
-               if (millisUntilFinished < 10000) {
-                   timer_tv.setTextColor(getResources().getColor(R.color.light_red));
+        Bundle bundle = getIntent().getExtras();
+        boolean myBooleanVariable = bundle.getBoolean("IS_TOGGLED");
 
-               }
-            }
-            @Override
-            public void onFinish() {
-                timer_tv.setText(R.string.times_up_txt);
-                Button identify_btn = findViewById(R.id.identify_btn);
+        if (myBooleanVariable) {
 
-                Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
-                String selectedModel = carMakeSpinner.getSelectedItem().toString();
+            new CountDownTimer(20000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
+                    if (millisUntilFinished < 10000) {
+                        timer_tv.setTextColor(getResources().getColor(R.color.light_red));
 
-                // get the correct answer
-                ImageView imgView = findViewById(R.id.car_img_view);
-                String correctModel = imgView.getTag().toString();
-
-                if (selectedModel.equals("Select Model")) {
-                    Toast.makeText(Identify_Car_Make_Activity.this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
-            } else if (selectedModel.toLowerCase().equals(correctModel)) {
-                //if the correct option has been chosen
-                cf.correctAnswerCarMake(Identify_Car_Make_Activity.this, identify_btn);
-                carMakeSpinner.setEnabled(false);
-            } else {
-                        // incorrect options has been chosen
-                    cf.wrongAnswerCarMake(Identify_Car_Make_Activity.this);
-                    // displaying the correct model
-                    TextView correct_text = findViewById(R.id.correct_txt_view);
-                    String displayText = "Correct Model: " + (correctModel.substring(0, 1).toUpperCase() + correctModel.substring(1));
-                    correct_text.setText(displayText);
-                    // added a delay and removed the textView.
-                    correct_text.postDelayed(() -> correct_text.setVisibility(View.GONE), 3500);
-                    carMakeSpinner.setEnabled(false);
-                    cf.setTagToNext(identify_btn);
+                    }
                 }
-            }
-        }.start();
+
+                @Override
+                public void onFinish() {
+                    timer_tv.setText(R.string.times_up_txt);
+                    Button identify_btn = findViewById(R.id.identify_btn);
+
+                    Spinner carMakeSpinner = findViewById(R.id.carMakeSpinner);
+                    String selectedModel = carMakeSpinner.getSelectedItem().toString();
+
+                    // get the correct answer
+                    ImageView imgView = findViewById(R.id.car_img_view);
+                    String correctModel = imgView.getTag().toString();
+
+                    if (selectedModel.equals("Select Model")) {
+                        Toast.makeText(Identify_Car_Make_Activity.this, "Please Select a Proper Model", Toast.LENGTH_SHORT).show();
+                    } else if (selectedModel.toLowerCase().equals(correctModel)) {
+                        //if the correct option has been chosen
+                        cf.correctAnswerCarMake(Identify_Car_Make_Activity.this, identify_btn);
+                        carMakeSpinner.setEnabled(false);
+                    } else {
+                        // incorrect options has been chosen
+                        cf.wrongAnswerCarMake(Identify_Car_Make_Activity.this);
+                        // displaying the correct model
+                        TextView correct_text = findViewById(R.id.correct_txt_view);
+                        String displayText = "Correct Model: " + (correctModel.substring(0, 1).toUpperCase() + correctModel.substring(1));
+                        correct_text.setText(displayText);
+                        // added a delay and removed the textView.
+                        correct_text.postDelayed(() -> correct_text.setVisibility(View.GONE), 3500);
+                        carMakeSpinner.setEnabled(false);
+                        cf.setTagToNext(identify_btn);
+                    }
+                }
+            }.start();
+        }
     }
 
     //initialises spinner
