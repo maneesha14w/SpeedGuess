@@ -100,12 +100,26 @@ public class CommonFunctions {
         toast.getView().setBackgroundColor(hints_activity.getResources().getColor(R.color.light_red));
         toast.show();
     }
+
+    public void correctAnswerIdentifyImage(Identify_Image_Activity identify_image_activity, Button btn) {
+        Toast toast = Toast.makeText(identify_image_activity, "CORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(identify_image_activity.getResources().getColor(R.color.green));
+        toast.show();
+        setTagToNext(btn);
+    }
+
+    public void wrongAnswerIdentifyImage(Identify_Image_Activity identify_image_activity) {
+        Toast toast = Toast.makeText(identify_image_activity, "INCORRECT!", Toast.LENGTH_SHORT);
+        toast.getView().setBackgroundColor(identify_image_activity.getResources().getColor(R.color.light_red));
+        toast.show();
+    }
 }
 
-
+//
 //        timer_tv = findViewById(R.id.timer_tv);
 //                new CountDownTimer(20000, 1000) {
 //
+//                    @Override
 //public void onTick(long millisUntilFinished) {
 //        timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
 //        if (millisUntilFinished < 10000) {
@@ -120,4 +134,4 @@ public class CommonFunctions {
 //
 //
 //        }
-//        };
+//        }.start;

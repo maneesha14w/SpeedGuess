@@ -3,6 +3,7 @@ package com.maneesha14w.speedguess;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ public class Identify_Image_Activity extends AppCompatActivity {
     private View lastView;
     private ImageView img_1, img_2, img_3;
     private String fileName_1, fileName_2, fileName_3;
+    private TextView identify_image_timer_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,31 @@ public class Identify_Image_Activity extends AppCompatActivity {
         cf.setTagToEmpty(submitBtn);
         setup(textView); //setups the images and the model that is to be guessed
 
+        identify_image_timer_tv = findViewById(R.id.identify_image_timer_tv);
+        new CountDownTimer(20000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                identify_image_timer_tv.setText(String.valueOf("Time: " + millisUntilFinished / 1000));
+                if (millisUntilFinished < 10000) {
+                    identify_image_timer_tv.setTextColor(getResources().getColor(R.color.light_red));
+
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                identify_image_timer_tv.setText(R.string.times_up_txt);
+                if (lastView == null) { //no image has been selected
+                    Toast.makeText(Identify_Image_Activity.this, "Please pick an image and submit!", Toast.LENGTH_SHORT).show();
+                } else if (lastView.getTag().equals(chosenName)) { //
+                    cf.correctAnswerIdentifyImage(Identify_Image_Activity.this, submitBtn);
+                } else {
+                    cf.wrongAnswerIdentifyImage(Identify_Image_Activity.this);
+                }
+                cf.setTagToNext(submitBtn);
+            }
+        }.start();
     }
 
     private void setup(TextView textView) {
